@@ -58,6 +58,9 @@ function montselse(months) {
     var data = new Date();
     var month = data.getMonth();
     var day = data.getDate();
+    $('.mon').prop('checked', false);
+    $('#mon6').prop('checked', false);
+    $('#alls').prop('checked', false);
     if (day > 15) {
         month++;
     }
