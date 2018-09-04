@@ -58,22 +58,27 @@ function montselse(months) {
     var data = new Date();
     var month = data.getMonth();
     var day = data.getDate();
+    var year = data.getFullYear();
     $('.mon').prop('checked', false);
     $('#mon6').prop('checked', false);
     $('#alls').prop('checked', false);
-    if (day > 15) {
+    var val = Number.parseInt($('#year option:selected').text());
+    if (val > year) {
+        $('.mon').prop('disabled', true);
+    }
+    else if (day > 15) {
         month++;
     }
     $('.mon').prop('disabled', false);
     var months = [];
     $('.mon').each(function () {
         months.push($(this).attr('id'));
-        if (k < month) {
+        if (k < month && val <= year) {
             $(this).prop('disabled', true);
         }
         k++;
     });
-    if ($('#edition option:selected').attr('data-month') != "") {
+    if ($('#edition option:selected').attr('data-month') != "" && $('#edition option:selected').text() != "Выберите издание") {
         var arrs = $('#edition option:selected').attr('data-month').split(',');
         for (var i = 0; i < arrs.length; i++) {
             if (arrs[i] in months) {
